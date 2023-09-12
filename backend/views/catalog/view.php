@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /** @var common\models\Catalog $model */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Catalogs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Каталоги', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,11 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Список', ['index'], ['class' => 'btn btn-success   ']) ?>
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Удалить каталог?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -32,9 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'title_translit',
-            'type',
-            'created_at',
-            'updated_at',
+            [
+                'attribute' => 'type',
+                'value' => \common\models\Catalog::typeList()[$model->type]
+            ],
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]) ?>
 

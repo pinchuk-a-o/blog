@@ -1,5 +1,6 @@
 <?php
 
+use common\models\Catalog;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,17 +13,27 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-lg-6">
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'title_translit')->textInput(['maxlength' => true, 'readOnly' => true]) ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <?= $form->field($model, 'type')->dropDownList(Catalog::typeList()) ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'sort')->textInput() ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'title_translit')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'type')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+    <hr>
 
     <div class="form-group">
+        <?= Html::a('Список', ['index'], ['class' => 'btn btn-success']) ?>
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 

@@ -8,9 +8,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * CatalogController implements the CRUD actions for Catalog model.
- */
 class CatalogController extends Controller
 {
     /**
@@ -31,11 +28,6 @@ class CatalogController extends Controller
         );
     }
 
-    /**
-     * Lists all Catalog models.
-     *
-     * @return string
-     */
     public function actionIndex()
     {
         $searchModel = new CatalogSearch();
@@ -47,12 +39,6 @@ class CatalogController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Catalog model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -60,11 +46,6 @@ class CatalogController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Catalog model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
     public function actionCreate()
     {
         $model = new Catalog();
@@ -82,13 +63,7 @@ class CatalogController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Catalog model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);

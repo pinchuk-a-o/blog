@@ -1,10 +1,10 @@
 <?php
 
 use common\models\Catalog;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 /** @var yii\web\View $this */
 /** @var backend\models\CatalogSearch $searchModel */
@@ -21,25 +21,28 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Добавить каталог', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+
             'title',
             'title_translit',
-            'type',
+            [
+                'attribute' => 'type',
+                'value' => function ($model) {
+                    return Catalog::typeList()[$model->type];
+                }
+            ],
             'created_at',
             //'updated_at',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Catalog $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

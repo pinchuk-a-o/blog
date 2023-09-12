@@ -1,6 +1,8 @@
 <?php
 
+use vova07\imperavi\Widget;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
@@ -20,7 +22,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title_translit')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'text')->widget(Widget::className(), [
+        'settings' => [
+            'lang' => 'ru',
+            'minHeight' => 300,
+            'plugins' => [
+                'clips',
+                'fullscreen',
+                'imagemanager',
+            ],
+            'imageUpload' => Url::to(['default/image-upload']),
+            'imageManagerJson' => Url::to(['/default/images-get']),
+        ],
+    ]); ?>
 
     <?= $form->field($model, 'created_at')->textInput() ?>
 
