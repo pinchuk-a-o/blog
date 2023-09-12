@@ -74,9 +74,9 @@ class Catalog extends ActiveRecord
         return $this->hasMany(Article::class, ['catalog_id' => 'id']);
     }
 
-    public function beforeValidate()
+    public function beforeValidate(): bool
     {
-        $this->title_translit = Inflector::transliterate($this->title);
+        $this->title_translit = Inflector::slug($this->title);
 
         return parent::beforeValidate();
     }

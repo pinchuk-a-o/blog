@@ -25,6 +25,10 @@ $this->title = 'API документация';
                             <div class="col-sm-3 fst-italic">/v1/catalogs</div>
                         </div>
                         <div class="row">
+                            <div class="col-sm-2 fw-bold">GET-параметры:</div>
+                            <div class="col-sm-3 fst-italic">=</div>
+                        </div>
+                        <div class="row">
                             <div class="col-sm-2 fw-bold">Тело запроса:</div>
                             <div class="col-sm-3 fst-italic">-</div>
                         </div>
@@ -47,11 +51,6 @@ $this->title = 'API документация';
                                 2 - курс
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -70,7 +69,14 @@ $this->title = 'API документация';
                         </div>
                         <div class="row">
                             <div class="col-sm-2 fw-bold">Адрес:</div>
-                            <div class="col-sm-3 fst-italic">/v1/catalogs</div>
+                            <div class="col-sm-3 fst-italic">/v1/catalog/{catalog_id}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2 fw-bold">GET-параметры:</div>
+                            <div class="col-sm-3 fst-italic">
+                                page (int) - страница
+                                limit (int) - статей на страницу
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-2 fw-bold">Тело запроса:</div>
@@ -85,9 +91,19 @@ $this->title = 'API документация';
                             <div class="col-sm-3 fst-italic">
                                 <code>
                                     {
-                                    "catalogs": [
-                                    {"id": 1, "title":"Название", "url":"/catalog/1"}, ...}}
-                                    ]
+                                    "catalog":{"id": 1, "title":"Название", "url":"/catalog/1", "type":2},
+                                    "articles":[
+                                        {
+                                            'id' => 1,
+                                            'author' => [
+                                                'author_id' => 1,
+                                                'name' => 'Имя',
+                                            ],
+                                            'title' => "название статьи",
+                                            'url' => '/article/1',
+                                            'short_text' => "короткий текст статьи",
+                                        },...],
+                                    "counter":0
                                     }
                                 </code>
                             </div>
@@ -116,6 +132,10 @@ $this->title = 'API документация';
                         <div class="row">
                             <div class="col-sm-2 fw-bold">Адрес:</div>
                             <div class="col-sm-3 fst-italic">/v1/catalogs</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2 fw-bold">GET-параметры:</div>
+                            <div class="col-sm-3 fst-italic">=</div>
                         </div>
                         <div class="row">
                             <div class="col-sm-2 fw-bold">Тело запроса:</div>

@@ -13,6 +13,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $catalog_id
  * @property string|null $title
  * @property string|null $title_translit
+ * @property string|null $short_text
  * @property string|null $text
  * @property int $created_at
  * @property int $updated_at
@@ -46,7 +47,7 @@ class Article extends \yii\db\ActiveRecord
         return [
             [['author_id', 'catalog_id', 'created_at', 'updated_at'], 'default', 'value' => null],
             [['author_id', 'catalog_id', 'created_at', 'updated_at', 'sort'], 'integer'],
-            [['text'], 'string'],
+            [['short_text', 'text'], 'string'],
             [['created_at', 'updated_at'], 'required'],
             [['title', 'title_translit'], 'string', 'max' => 255],
             [['catalog_id'], 'exist', 'skipOnError' => true, 'targetClass' => Catalog::class, 'targetAttribute' => ['catalog_id' => 'id']],
