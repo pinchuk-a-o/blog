@@ -1,5 +1,6 @@
 <?php
 
+use backend\models\ArticleSearch;
 use common\models\Article;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
@@ -7,7 +8,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 /** @var yii\web\View $this */
-/** @var \ArticleSearch $searchModel */
+/** @var ArticleSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Статьи';
@@ -30,18 +31,28 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'author_id',
-            'catalog_id',
+            [
+                'attribute' => 'author_id',
+                'value' => function (Article $model) {
+                    return $model->author->username;
+                }
+            ],
+            [
+                'attribute' => 'catalog_id',
+                'value' => function (Article $model) {
+                    return $model->catalog->title;
+                }
+            ],
             'title',
             'title_translit',
             //'text:ntext',
-            //'created_at',
-            //'updated_at',
+//            'created_at',
+            'updated_at:date',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Article $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

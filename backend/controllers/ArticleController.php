@@ -4,7 +4,10 @@ namespace backend\controllers;
 
 use backend\models\ArticleSearch;
 use common\models\Article;
+use common\models\Catalog;
+use common\models\User;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -13,9 +16,6 @@ use yii\web\NotFoundHttpException;
  */
 class ArticleController extends Controller
 {
-    /**
-     * @inheritDoc
-     */
     public function behaviors()
     {
         return array_merge(
@@ -31,12 +31,7 @@ class ArticleController extends Controller
         );
     }
 
-    /**
-     * Lists all Article models.
-     *
-     * @return string
-     */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -53,7 +48,7 @@ class ArticleController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView(int $id): string
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -77,8 +72,12 @@ class ArticleController extends Controller
             $model->loadDefaultValues();
         }
 
+        $authors = ArrayHelper::map(User::find()->all(), 'id', 'username');
+        $catalogs = ArrayHelper::map(Catalog::find()->all(), 'id', 'title');
         return $this->render('create', [
             'model' => $model,
+            'authors' => $authors,
+            'catalogs' => $catalogs,
         ]);
     }
 
@@ -89,7 +88,7 @@ class ArticleController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate(int $id)
     {
         $model = $this->findModel($id);
 
@@ -97,8 +96,12 @@ class ArticleController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $authors = ArrayHelper::map(User::find()->all(), 'id', 'username');
+        $catalogs = ArrayHelper::map(Catalog::find()->all(), 'id', 'title');
         return $this->render('update', [
             'model' => $model,
+            'authors' => $authors,
+            'catalogs' => $catalogs,
         ]);
     }
 
@@ -109,7 +112,7 @@ class ArticleController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete(int $id): \yii\web\Response
     {
         $this->findModel($id)->delete();
 
@@ -123,7 +126,7 @@ class ArticleController extends Controller
      * @return Article the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): Article
     {
         if (($model = Article::findOne(['id' => $id])) !== null) {
             return $model;

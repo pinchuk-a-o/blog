@@ -76,7 +76,9 @@ class Catalog extends ActiveRecord
 
     public function beforeValidate(): bool
     {
-        $this->title_translit = Inflector::slug($this->title);
+        if (!isset($this->oldAttributes['title']) || $this->oldAttributes['title'] !== $this->title) {
+            $this->title_translit = Inflector::slug($this->title);
+        }
 
         return parent::beforeValidate();
     }

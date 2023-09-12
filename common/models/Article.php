@@ -2,8 +2,8 @@
 
 namespace common\models;
 
-use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\Inflector;
 
 /**
  * This is the model class for table "article".
@@ -62,13 +62,15 @@ class Article extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'author_id' => 'Author ID',
-            'catalog_id' => 'Catalog ID',
-            'title' => 'Title',
-            'title_translit' => 'Title Translit',
-            'text' => 'Text',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'author_id' => 'Автор',
+            'catalog_id' => 'Каталог',
+            'sort' => 'Позиция в курсе',
+            'title' => 'Заголовок',
+            'title_translit' => 'Транслит',
+            'short_text' => 'Короткий текст',
+            'text' => 'Полный текст',
+            'created_at' => 'Дата создания',
+            'updated_at' => 'Дата редактирования',
         ];
     }
 
@@ -87,8 +89,17 @@ class Article extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getCatalog()
+    public function getCatalog(): \yii\db\ActiveQuery
     {
         return $this->hasOne(Catalog::class, ['id' => 'catalog_id']);
+    }
+
+    public function beforeValidate(): bool
+    {
+        if (!isset($this->oldAttributes['title']) || $this->oldAttributes['title'] !== $this->title) {
+            $this->title_translit = Inflector::slug($this->title);
+        }
+
+        return parent::beforeValidate();
     }
 }

@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
+        <?= Html::a('Список', ['index'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -35,8 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'title_translit',
             'text:ntext',
-            'created_at',
-            'updated_at',
+            'created_at:date',
+            'updated_at:date',
         ],
     ]) ?>
 
