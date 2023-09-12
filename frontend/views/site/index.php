@@ -37,10 +37,14 @@ $this->title = 'API документация';
                             <div class="col-sm-3 fst-italic">
                                 <code>
                                     { "catalogs": [
-                                    {"id": 1, "title":"Название", "url":"/catalog/1"}, ...
+                                    {"id": 1, "title":"Название", "url":"/catalog/1", "type":1}, ...
                                     ]
                                     }
                                 </code>
+
+                                type:
+                                1 - категория
+                                2 - курс
                             </div>
                         </div>
                         <div class="row">

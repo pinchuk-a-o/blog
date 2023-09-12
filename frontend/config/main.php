@@ -41,6 +41,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'GET v1/catalogs' => 'v1/catalog/index',
             ],
         ],
     ],
