@@ -11,6 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'name' => 'ap1n.ru',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
