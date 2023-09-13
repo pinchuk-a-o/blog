@@ -56,11 +56,12 @@ class Catalog extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'title_translit' => 'Title Translit',
-            'type' => 'Type',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'title' => 'Заголовок',
+            'title_translit' => 'Транслит заголовка',
+            'type' => 'Тип',
+            'sort' => 'Вес при сортировке',
+            'created_at' => 'Дата создания',
+            'updated_at' => 'Последнее обновление',
         ];
     }
 
@@ -81,5 +82,10 @@ class Catalog extends ActiveRecord
         }
 
         return parent::beforeValidate();
+    }
+
+    public function getUrl(): string
+    {
+        return '/catalog/' . $this->id;
     }
 }

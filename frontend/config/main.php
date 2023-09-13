@@ -43,6 +43,7 @@ return [
             'rules' => [
                 'GET v1/catalogs' => 'v1/catalog/catalogs',
                 'GET v1/catalog/<id:\d+>' => 'v1/catalog/articles',
+                'GET v1/article/<id:\d+>' => 'v1/article/article',
             ],
         ],
     ],

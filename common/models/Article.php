@@ -102,4 +102,9 @@ class Article extends \yii\db\ActiveRecord
 
         return parent::beforeValidate();
     }
+
+    public function getUrl(): string
+    {
+        return '/article/' . $this->id;
+    }
 }

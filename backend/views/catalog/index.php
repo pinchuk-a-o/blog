@@ -25,9 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+//            ['class' => 'yii\grid\SerialColumn'],
 
-
+            'id',
             'title',
             'title_translit',
             [
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Catalog::typeList()[$model->type];
                 }
             ],
-            'created_at',
+            'created_at:date',
             //'updated_at',
             [
                 'class' => ActionColumn::className(),

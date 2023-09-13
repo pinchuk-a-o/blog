@@ -26,7 +26,7 @@ $this->title = 'API документация';
                         </div>
                         <div class="row">
                             <div class="col-sm-2 fw-bold">GET-параметры:</div>
-                            <div class="col-sm-3 fst-italic">=</div>
+                            <div class="col-sm-3 fst-italic">-</div>
                         </div>
                         <div class="row">
                             <div class="col-sm-2 fw-bold">Тело запроса:</div>
@@ -131,11 +131,11 @@ $this->title = 'API документация';
                         </div>
                         <div class="row">
                             <div class="col-sm-2 fw-bold">Адрес:</div>
-                            <div class="col-sm-3 fst-italic">/v1/catalogs</div>
+                            <div class="col-sm-3 fst-italic">/v1/article/{article_id}</div>
                         </div>
                         <div class="row">
                             <div class="col-sm-2 fw-bold">GET-параметры:</div>
-                            <div class="col-sm-3 fst-italic">=</div>
+                            <div class="col-sm-3 fst-italic">-</div>
                         </div>
                         <div class="row">
                             <div class="col-sm-2 fw-bold">Тело запроса:</div>
@@ -149,11 +149,7 @@ $this->title = 'API документация';
                             <div class="col-sm-2 fw-bold">Ответ 200:</div>
                             <div class="col-sm-3 fst-italic">
                                 <code>
-                                    {
-                                    "catalogs": [
-                                    {"id": 1, "title":"Название", "url":"/catalog/1"}, ...}}
-                                    ]
-                                    }
+                                    {"catalog":{"id":2,"title":"PHP","url":"catalog/2","type":1},"article":{"id":3,"author":{"author_id":4,"name":"Имя автора"},"title":"Тестова статья333","url":"article/3","text":"полный текст статьи"}}
                                 </code>
                             </div>
                         </div>
