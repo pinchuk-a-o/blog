@@ -48,7 +48,6 @@ class Article extends \yii\db\ActiveRecord
             [['author_id', 'catalog_id', 'created_at', 'updated_at'], 'default', 'value' => null],
             [['author_id', 'catalog_id', 'created_at', 'updated_at', 'sort'], 'integer'],
             [['short_text', 'text'], 'string'],
-            [['created_at', 'updated_at'], 'required'],
             [['title', 'title_translit'], 'string', 'max' => 255],
             [['catalog_id'], 'exist', 'skipOnError' => true, 'targetClass' => Catalog::class, 'targetAttribute' => ['catalog_id' => 'id']],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['author_id' => 'id']],
