@@ -17,14 +17,14 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="row">
-
         <div class="col-lg-4"><?= $form->field($model, 'author_id')->dropDownList($authors) ?></div>
         <div class="col-lg-4"><?= $form->field($model, 'catalog_id')->dropDownList($catalogs) ?></div>
         <div class="col-lg-4"><?= $form->field($model, 'sort')->textInput() ?></div>
     </div>
     <div class="row">
         <div class="col-lg-6"><?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?></div>
-        <div class="col-lg-6"><?= $form->field($model, 'title_translit')->textInput(['readonly' => true]) ?></div>
+        <div class="col-lg-3"><?= $form->field($model, 'title_translit')->textInput(['readonly' => true]) ?></div>
+        <div class="col-lg-3"><?= $form->field($model, 'is_published')->checkbox() ?></div>
     </div>
 
     <div class="row">

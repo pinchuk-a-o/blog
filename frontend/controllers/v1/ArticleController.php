@@ -23,15 +23,22 @@ class ArticleController extends Controller
 
     public function actionArticle(int $id): Response
     {
-        $article = Article::findOne($id);
+        $article = Article::find()
+            ->where(['id' => $id])
+            ->andWhere(['is_published' => true])
+            ->one();
 
         $data = $this->transformArticle($article);
 
         return $this->asJson($data);
     }
 
-    private function transformArticle(Article $article): array
+    private function transformArticle(?Article $article): array
     {
+        if (is_null($article)) {
+            return [];
+        }
+
         $response['catalog'] = $this->catalogTransformer->transform($article->catalog);
         $response['article'] = [
             'id' => $article->id,

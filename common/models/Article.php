@@ -18,6 +18,7 @@ use yii\helpers\Inflector;
  * @property int $created_at
  * @property int $updated_at
  * @property int $sort
+ * @property boolean $is_published
  *
  * @property User $author
  * @property Catalog $catalog
@@ -48,6 +49,7 @@ class Article extends \yii\db\ActiveRecord
             [['author_id', 'catalog_id', 'created_at', 'updated_at'], 'default', 'value' => null],
             [['author_id', 'catalog_id', 'created_at', 'updated_at', 'sort'], 'integer'],
             [['short_text', 'text'], 'string'],
+            [['is_published',], 'boolean'],
             [['title', 'title_translit'], 'string', 'max' => 255],
             [['catalog_id'], 'exist', 'skipOnError' => true, 'targetClass' => Catalog::class, 'targetAttribute' => ['catalog_id' => 'id']],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['author_id' => 'id']],
@@ -70,6 +72,7 @@ class Article extends \yii\db\ActiveRecord
             'text' => 'Полный текст',
             'created_at' => 'Дата создания',
             'updated_at' => 'Дата редактирования',
+            'is_published' => 'Опубликован',
         ];
     }
 

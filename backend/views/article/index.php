@@ -45,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'title',
             'title_translit',
+            'is_published',
             //'text:ntext',
 //            'created_at',
             'updated_at:date',

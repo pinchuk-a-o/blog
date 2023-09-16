@@ -51,12 +51,17 @@ class CatalogController extends Controller
 
             $articles = Article::find()
                 ->where(['catalog_id' => $id])
+                ->andWhere(['is_published' => true])
                 ->orderBy('created_at ASC')
                 ->offset($limit * $page)
                 ->limit($limit)
                 ->all();
         } else {
-            $articles = Article::find()->where(['catalog_id' => $id])->orderBy('sort ASC')->all();
+            $articles = Article::find()
+                ->where(['catalog_id' => $id])
+                ->andWhere(['is_published' => true])
+                ->orderBy('sort ASC')
+                ->all();
         }
 
         $data = $this->transformArticles($articles, $catalog);
